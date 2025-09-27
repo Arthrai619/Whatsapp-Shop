@@ -1,4 +1,4 @@
-const {getCategory, addCategory, updateCategory, deleteCategory} = require("../controller/categoryController")
+const {getCategory, addCategory, updateCategory, deleteCategory} = require("../Controllers/categoryController")
 const auth = require("../Middleware/auth")
 const route = require("express").Router()
 
