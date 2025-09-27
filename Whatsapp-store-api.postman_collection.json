@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "98b8d1ef-8f5f-4151-b7ca-6a5090dd6d89",
+		"name": "Whatsapp-store-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43614190",
+		"_collection_link": "https://arth-9949538.postman.co/workspace/Arth's-Workspace~dd9333f0-9797-4392-850b-0e17d8904e5d/collection/43614190-98b8d1ef-8f5f-4151-b7ca-6a5090dd6d89?action=share&source=collection_link&creator=43614190"
+	},
+	"item": [
+		{
+			"name": "Add ShopOwner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Arth Sharma\",\r\n    \"phoneNumber\": \"9876543210\",\r\n    \"password\": \"strongPassword123\",\r\n    \"shopName\": \"Arth's General Store\",\r\n    \"location\": \"Mumbai, India\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show ShopOwners",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phoneNumber\":\"9876543210\",\r\n    \"password\":\"strongPassword123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDg0MGJjMTIwZmNiMGUzNzc2MmZjYSIsImlhdCI6MTc1OTAwMzM0MH0.fyVs8Gb7Y3KRx28UgzbjZIfTfYx7LVuOP8_dgmPf264",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"Electronics\",\r\n        \"user\": \"68d840bc120fcb0e37762fca\"\r\n    },\r\n    {\r\n        \"name\": \"Groceries\",\r\n        \"user\": \"68d840bc120fcb0e37762fca\"\r\n    },\r\n    {\r\n        \"name\": \"Fashion & Apparel\",\r\n        \"user\": \"68d840bc120fcb0e37762fca\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding Products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDg0MGJjMTIwZmNiMGUzNzc2MmZjYSIsImlhdCI6MTc1OTAwMzM0MH0.fyVs8Gb7Y3KRx28UgzbjZIfTfYx7LVuOP8_dgmPf264",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"Premium Green Tea\",\r\n        \"description\": \"A refreshing and healthy blend of organic green tea leaves. 25 tea bags.\",\r\n        \"price\": 250,\r\n        \"category\": \"68d843deb0a6496ad15bc0d9\", // Paste the real _id for your 'Groceries' category here\r\n        \"shopkeeper\": \"68d840bc120fcb0e37762fca\"  // Paste the real _id for your user/shopkeeper here\r\n    },\r\n    {\r\n        \"name\": \"Stainless Steel Water Bottle\",\r\n        \"description\": \"1L vacuum-insulated bottle. Keeps drinks hot for 12 hours or cold for 24 hours.\",\r\n        \"price\": 799,\r\n        \"category\": \"68d843deb0a6496ad15bc0da\", // Paste the real _id for your 'Home & Kitchen' category here\r\n        \"shopkeeper\": \"68d840bc120fcb0e37762fca\"  // Paste the real _id for your user/shopkeeper here\r\n    },\r\n    {\r\n        \"name\": \"Classic Leather Wallet\",\r\n        \"description\": \"A sleek and durable wallet for men with multiple card slots.\",\r\n        \"price\": 950,\r\n        \"category\": \"68d843deb0a6496ad15bc0da\", // Paste the real _id for your 'Fashion' category here\r\n        \"shopkeeper\": \"68d840bc120fcb0e37762fca\"  // Paste the real _id for your user/shopkeeper here\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add ShopImage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDg0MGJjMTIwZmNiMGUzNzc2MmZjYSIsImlhdCI6MTc1OTAwMzM0MH0.fyVs8Gb7Y3KRx28UgzbjZIfTfYx7LVuOP8_dgmPf264",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDgzMDg3NDg0M2FlNmUyNDBjZjBjZCIsImlhdCI6MTc1OTAwMTM0NX0.8vTyiAT6_wdg9iCVfr3j7JClwLn0q0VRQgD1l2zBc0E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "shopImage",
+							"type": "file",
+							"src": "/C:/Users/Arth/Downloads/IMG_9181.JPG"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/update-shop-image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"update-shop-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Uploading Product Image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDg0MGJjMTIwZmNiMGUzNzc2MmZjYSIsImlhdCI6MTc1OTAwMzM0MH0.fyVs8Gb7Y3KRx28UgzbjZIfTfYx7LVuOP8_dgmPf264",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDgzMDg3NDg0M2FlNmUyNDBjZjBjZCIsImlhdCI6MTc1OTAwMTM0NX0.8vTyiAT6_wdg9iCVfr3j7JClwLn0q0VRQgD1l2zBc0E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Arth/Downloads/Functional Dgm.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/product/upload-image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"product",
+						"upload-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding Products With Images",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDg0MGJjMTIwZmNiMGUzNzc2MmZjYSIsImlhdCI6MTc1OTAwMzM0MH0.fyVs8Gb7Y3KRx28UgzbjZIfTfYx7LVuOP8_dgmPf264",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My New Product\",\r\n    \"description\": \"A great item from my shop.\",\r\n    \"price\": 1999,\r\n    \"category\": \"68d843deb0a6496ad15bc0da\",\r\n    \"shopkeeper\": \"68d840bc120fcb0e37762fca\",\r\n    \"imageUrl\": \"https://res.cloudinary.com/dpdhmwjqe/image/upload/v1759005743/whatsapp-shop-products/gsv0nkpbudb3fkw81dv3.png\",\r\n    \"imagePublicId\": \"whatsapp-shop-products/gsv0nkpbudb3fkw81dv3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
