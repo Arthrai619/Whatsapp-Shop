@@ -1,11 +1,31 @@
-const {getUser, addUser, updateUser, deleteUser, loginUser} = require("../controller/userController")
+const {
+    getUser, 
+    addUser, 
+    updateUser, 
+    deleteUser, 
+    loginUser, 
+    updateShopImageController // Renamed for clarity in the next step
+} = require("../Controllers/userController");
 
-const route = require("express").Router()
+const auth = require("../Middleware/auth");
+const upload = require("../Middleware/multer");
+const route = require("express").Router();
 
-route.get("/", getUser)
-route.post("/", addUser)
-route.post("/login", addUser)
-route.put("/:id", updateUser)
-route.delete("/:id", deleteUser)
 
-module.exports = route
+
+route.get("/", getUser);
+route.post("/register", addUser); // <-- More descriptive
+route.post("/login", loginUser);
+// Route for updating the user's shop image
+route.put(
+    "/update-shop-image", // <-- More descriptive path and using PUT
+    auth, 
+    upload.single('shopImage'), // <-- Consistent field name
+    updateShopImageController
+);
+route.put("/:id", auth, updateUser);
+route.delete("/:id", auth, deleteUser);
+
+
+
+module.exports = route;
