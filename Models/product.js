@@ -1,31 +1,40 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required: True
+    name: {
+        type: String,
+        required: true,
+        trim: true // <-- ADDED
     },
-    description:{
-        type: String
+    description: {
+        type: String,
+        trim: true // <-- ADDED
     },
     price: {
         type: Number,
-        required: True
+        required: true,
+        min: 0 // <-- ADDED: Prevents negative prices
     },
     category: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'category',
-        required: True
+        required: true
     },
     shopkeeper: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required: True
+        required: true
     },
-    img: {
+    imageUrl: { // <-- RENAMED from 'img' for clarity
         type: String,
+        
+    },
+    imagePublicId: {
+        type: String,
+
     }
-})
+}, {
+    timestamps: true // <-- ADDED
+});
 
-
-module.exports = mongoose.model("product", productSchema)
+module.exports = mongoose.model("product", productSchema);
