@@ -1,18 +1,35 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-async function auth(req,res,next) {
+const auth = (req, res, next) => {
     try {
-        const token = req.header("auth-token")
-        const verifyToken = await jwt.verify(token,process.env.SEC)
-        if(!verifyToken) return res.json({errors:true ,message:"Token is Invalid"})
-        next()
+        // 1. Get token from the standard Authorization header
+        const authHeader = req.header("Authorization");
 
+        // 2. Check if token exists and is in the correct "Bearer" format
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return res.status(401).json({ 
+                errors: true, 
+                message: "Access denied. No token provided." 
+            });
+        }
+        
+        const token = authHeader.split(' ')[1];
+
+        // 3. Verify the token
+        const decodedPayload = jwt.verify(token, process.env.SEC);
+
+        // 4. Attach the user payload to the request object (THE FIX)
+        req.user = decodedPayload;
+        
+        next(); // Pass control to the next function
+
+    } catch (error) {
+        // This will catch any error from jwt.verify (invalid, expired, etc.)
+        return res.status(401).json({ 
+            errors: true, 
+            message: "Invalid or expired token." 
+        });
     }
+};
 
-     catch (error) {
-        return res.status(500).json({errors:true,message:error.message})
-    }
-
-}
-
-module.exports  = auth
+module.exports = auth;
