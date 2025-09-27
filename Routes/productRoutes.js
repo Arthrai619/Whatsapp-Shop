@@ -1,10 +1,22 @@
-const {getProduct, addProduct, updateProduct, deleteProduct} = require("../controller/productController")
-const auth = require("../Middleware/auth")
-const route = require("express").Router()
+const {
+    getProduct, 
+    addProduct, 
+    updateProduct, 
+    deleteProduct, 
+    uploadImageController 
+} = require("../Controllers/productController");
 
-route.get("/", getProduct)
-route.post("/", auth, addProduct)
-route.put("/:id", auth, updateProduct)
-route.delete("/:id", auth, deleteProduct)
+const auth = require("../Middleware/auth");
+const upload = require("../Middleware/multer"); 
+const route = require("express").Router();
 
-module.exports = route
+
+route.get("/", getProduct);
+route.post("/", auth, addProduct);
+route.put("/:id", auth, updateProduct);
+route.delete("/:id", auth, deleteProduct);
+
+
+route.post("/upload-image", auth, upload.single('image'), uploadImageController);
+
+module.exports = route;
