@@ -5,9 +5,12 @@ const productRoutes = require("./Routes/productRoutes")
 const categoryRoutes = require("./Routes/categoryRoutes")
 require("dotenv/config")
 
+const cors = require("cors")
+
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.get("/",(req,res)=>{
     res.send("Home")
