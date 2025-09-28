@@ -30,21 +30,22 @@ exports.updateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
     try {
-       
         const product = await Product.findById(req.params.id);
         if (!product) {
             return res.status(404).json({ message: "Product not found." });
         }
 
-   
-        await cloudinary.uploader.destroy(product.imagePublicId);
+        // FIX: Only delete the image if an imagePublicId exists
+        if (product.imagePublicId) {
+            await cloudinary.uploader.destroy(product.imagePublicId);
+        }
 
-    
+        // Now, delete the product from the database
         await Product.findByIdAndDelete(req.params.id);
 
-        res.status(200).json({ 
+        res.status(200).json({
             success: true,
-            message: "Product and associated image deleted successfully." 
+            message: "Product and associated image deleted successfully."
         });
     } catch (error) {
         console.error('Error deleting product:', error);
@@ -83,6 +84,7 @@ exports.uploadImageController = async (req, res) => {
         });
     }
 };
+
 
 
 
